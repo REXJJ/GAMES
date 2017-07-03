@@ -22,12 +22,8 @@ int ratio = 3;
 int kernel_size = 3;
 char* window_name = "Edge Map";
 int x;
-fstream f;
-/**
- * @function CannyThreshold
- * @brief Trackbar callback - Canny thresholds input with a ratio 1:3
- */
 
+fstream f;
 Mat A,B;
 
 /*void histogram()
@@ -65,13 +61,13 @@ void CannyThreshold(int, void*)
 char ch;
 int sta=1;
   
-  /// Reduce noise with a kernel 3x3
+  // Reduce noise with a kernel 3x3
   blur( src_gray, detected_edges, Size(3,3) );
 
-  /// Canny detector
+  // Canny detector
   Canny( detected_edges, detected_edges, lowThreshold, lowThreshold*ratio, kernel_size );
 
-  /// Using Canny's output as a mask, we display our result
+  // Using Canny's output as a mask, we display our result
   dst = Scalar::all(0);
 
   src.copyTo( dst, detected_edges);
@@ -109,7 +105,7 @@ int status=1;
         }
 
     double fps = cap.get(CV_CAP_PROP_FPS); //get the frames per seconds of the video
-    //namedWindow("A_good_name",CV_WINDOW_AUTOSIZE); //create a window called "MyVideo"
+    
     while(1)
     {
     Mat frame1,frame2,frame3,frame4,frame,frame5;
@@ -128,18 +124,18 @@ if (!cap.read(frame3)) // if not success, break loop
 frame=frame1-frame3;
 //frame5=Scalar::all(255)-frame;
 src=frame;
-/// Create a matrix of the same type and size as src (for dst)
+// Create a matrix of the same type and size as src (for dst)
   dst.create( src.size(), src.type() );
 
-  /// Convert the image to grayscale
+  // Convert the image to grayscale
   cvtColor( src, src_gray, CV_BGR2GRAY );
-  /// Create a window
+  // Create a window
   namedWindow( window_name, CV_WINDOW_AUTOSIZE );
 
-  /// Create a Trackbar for user to enter threshold
+  // Create a Trackbar for user to enter threshold
   createTrackbar( "Min Threshold:", window_name, &lowThreshold, max_lowThreshold, CannyThreshold );
 
-  /// Show the image
+  // Show the image
   CannyThreshold(0, 0);
 if(waitKey(30) == 27) // Wait for 'esc' key press to exit
         { 
