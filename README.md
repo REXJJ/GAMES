@@ -1,11 +1,11 @@
                 PING-PONG
 
-##Introduction
+## Introduction
 
 This is a gesture based ping pong game. The right side is played by the computer and the left side is played by you.
 You can control the bat using your hand. You move your hand up, the bat moves up and you move it down the bat moves down.
 
-##Installation
+## Installation
 
 This project requires opencv in c++, python 2.7 and bash shell.
 
